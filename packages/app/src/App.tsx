@@ -27,7 +27,7 @@ import {
   CatalogEntityPage,
 } from '@backstage/plugin-catalog';
 import { CatalogImportPage } from '@backstage/plugin-catalog-import';
-import { ExplorePage } from '@backstage/plugin-explore';
+import { ExplorePage, explorePlugin } from '@backstage/plugin-explore';
 import { GraphiQLPage } from '@backstage/plugin-graphiql';
 import { LighthousePage } from '@backstage/plugin-lighthouse';
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
@@ -75,6 +75,9 @@ const app = createApp({
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
+    });
+    bind(explorePlugin.externalRoutes, {
+      catalogEntity: catalogPlugin.routes.catalogEntity,
     });
   },
 });
